@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <title>{% block title%} {% endblock %}</title>
+     <style>
+      #cartbutton{
+             margin-left: 100px;
+             height : 40px;
+             width : 75px;
+             margin-top: 7px;
+           }
+       {% block css %} {% endblock %}
+  </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 55px;">
+  <a class="navbar-brand" href="/shop">Profily</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item active">
+        <a class="nav-link" href="/shop" style="padding-top: 16px;
+    margin-right: 8px;">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <form class="form-inline my-2 my-lg-2 " style="width:600px;">
+      <input class="form-control mr-lg-2 col-lg" type="search" placeholder="Search" aria-label="Search">
+      <div class="nav-right">
+      <div class="nav-search-submit nav-sprite">
+        <span id="nav-search-submit-text" class="nav-search-submit-text nav-sprite" aria-label="Go">
+          <input type="submit" class="nav-input" value="Go" tabindex="0">
+        </span>
+      </div>
+    </div>
+    </form>
+    <li class="nav-item active">
+        <a class="nav-link" href="/userprof/about" style="padding-top: 16px;
+    margin-right: 8px;">About</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/userprof/contact" style="padding-top: 16px;
+    margin-right: 8px;">contact</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/userprof/tracker" style="padding-top: 16px;
+    margin-right: 8px;">Tracker</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+  {% block body %} {% endblock %}
+  </body>
+
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script>
+    {% block js %} {% endblock %}
+  </script>
+  

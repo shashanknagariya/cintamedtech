@@ -1,0 +1,185 @@
+{% extends 'userprof/basic.html' %}
+{% block css %}
+
+.profile-header {
+    transform: translateY(5rem);
+}
+
+
+body {
+    background: #654ea3;
+    background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
+    background: linear-gradient(to right, #654ea3, #eaafc8);
+    min-height: 100vh;
+}
+ {% endblock %}
+
+{% block body %}
+<!-- For demo purpose -->
+<div class="row">
+    <div class="col-lg-7 mx-auto text-white text-center pt-5">
+        <h1 class="display-4">User profile</h1>
+
+    </div>
+</div><!-- End -->
+
+
+<div class="row py-5 ">
+    <div class="col-xl-4 col-md-6 col-sm-10 mx-auto">
+
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden" style="width:600px;">
+            <div class="px-4 pt-0 pb-4 bg-dark">
+                <form >{
+                <div class="media align-items-end profile-header">
+                    <div class="profile mr-3"><img src= "/media/{{params.userpic1}}"  alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+                    <div class="media-body mb-5 text-white" >
+                        <div style="margin-left: 90px;">
+                        <div class="form-group" >
+                        <div class="row">
+                        <h4 data-editable1 class="mt-0 mb-0 mx-4" id="name" name="name" >{{params.username}}</h4>
+                        <button type="submit" class="btn btn-labeled btn-success mx-4" style="display: none; overflow: hidden;"  id="name1">
+                            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> </button>{% csrf_token %}
+                        <button type="submit" class="btn btn-labeled btn-success mx-2" style="display: none; overflow: hidden; background-color: red;"  id="name2">
+                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span></button>
+                        </div> 
+                        </div>
+                        <div class="form-group">
+                        <div class="row">
+                        <p class="small mb-4" > <i class="fa fa-map-marker mr-2"></i> Age: <span id="age" name="age" data-editable2>{{params.userage}}</span> </p>
+                        <button type="submit" class="btn btn-labeled btn-success mx-4" style="display: none; overflow: hidden;"  id="age1">
+                            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> </button>{% csrf_token %}
+                        <button type="submit" class="btn btn-labeled btn-success mx-2" style="display: none; overflow: hidden; background-color: red;"  id="age2">
+                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span></button>
+                        </div>
+                        </div>
+                        
+                        <div class="form-group">
+                        <div class="row">
+                        <p class="small mb-4" > <i class="fa fa-map-marker mr-2"></i>Skills: <span id="skills" name="skills" data-editable3>{{params.userskills}}</span></p>
+                        <button type="submit" class="btn btn-labeled btn-success mx-4" style="display: none; overflow: hidden;"  id="skills1">
+                            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> </button>{% csrf_token %}
+                        <button type="submit" class="btn btn-labeled btn-success mx-4" style="display: none; overflow: hidden; background-color: red;"  id="skills2">
+                            <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span></button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            
+
+            <div class="py-4 px-4 my-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 mb-2 pr-lg-1"><img src="/media/{{params.userpic1}}" alt="" class="img-fluid rounded shadow-sm"></div>
+                    <div class="col-lg-6 mb-2 pl-lg-1"><img src="/media/{{params.userpic2}}" alt="" class="img-fluid rounded shadow-sm"></div>
+                </div>
+            </div>
+        </div><!-- End profile widget -->
+
+    </div>
+</div>
+
+ {% endblock %}
+
+ {% block js %}
+
+  $('body').on('dblclick', '[data-editable1]', function(){
+    var $el = $(this); 
+    var $input = $('<input/>').val( $el.text() );
+    $el.replaceWith( $input );
+    document.getElementById('name1').style.display = 'inline';
+    document.getElementById('name2').style.display = 'inline';
+    var save = function(){
+        var $p = $('<p id="name" name="name" data-editable2/>').text( $input.val());
+        $input.replaceWith( $p );
+      };
+    $input.one('blur', save).focus();
+  });
+
+  $('body').on('dblclick', '[data-editable2]', function(){
+    var $el = $(this);
+    var $input = $('<input/>').val( $el.text() );
+    $el.replaceWith( $input );
+    document.getElementById('age1').style.display = 'inline';
+    document.getElementById('age2').style.display = 'inline';
+    var save = function(){
+      var $p = $('<p name="age" id="age" data-editable2/>').text( $input.val());
+      $input.replaceWith( $p );
+    };
+    $input.one('blur', save).focus(); 
+  });
+
+  $('body').on('dblclick', '[data-editable3]', function(){
+    var $el = $(this);
+    var $input = $('<input/>').val( $el.text() );
+    $el.replaceWith( $input );
+    document.getElementById('skills1').style.display = 'inline';
+    document.getElementById('skills2').style.display = 'inline';
+    var save = function(){
+      var $p = $('<p name="skills" id="skills" data-editable3/>').text( $input.val());
+      $input.replaceWith( $p );
+    };
+    $input.one('blur', save).focus();
+  });
+
+  $('#name1').click(function(event){
+  var formdata = {
+      'name' : $('#name').text(),
+      'age' : $('#age span').text(),
+      'skills' : $('#skills span').text(),
+      'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val()
+  };
+  $.ajax({
+     type : 'POST',
+     url : '',
+     data : formdata,
+     encode : true     
+  })
+  .done(function(data){
+  })
+  event.preventDefault();  
+}); 
+
+$('#age1').click(function(event){
+  var formdata = {
+      'name' : $('#name').text(),
+      'age' : $('#age').text(),
+      'skills' : $('#skills span').text(),
+      'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val()
+  };
+  $.ajax({
+     type : 'POST',
+     url : '',
+     data : formdata,
+     encode : true     
+  })
+  .done(function(data){
+  })
+  event.preventDefault();  
+}); 
+
+$('#skills1').click(function(event){
+  var formdata = {
+      'name' : $('#name').text(),
+      'age' : $('#age span').text(),
+      'skills' : $('#skills').text(),
+      'csrfmiddlewaretoken' : $('input[name=csrfmiddlewaretoken]').val()
+  };
+  $.ajax({
+     type : 'POST',
+     url : '',
+     data : formdata, 
+     encode : true     
+  })
+  .done(function(data){
+  })
+  event.preventDefault();  
+}); 
+
+ {% endblock %}
